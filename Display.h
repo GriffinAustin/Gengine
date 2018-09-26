@@ -10,14 +10,19 @@ namespace Manage {
 	{
 		glViewport(0, 0, width, height);
 	}
+
 	void setCallbacks(GLFWwindow* window) {
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	}
+
 	void processInput(GLFWwindow* window) {
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 			glfwSetWindowShouldClose(window, true);
 		}
 	}
+
+	
+
 	// Validates initalization methods
 	int checkInit() {
 		// Load all OpenGL function pointers
@@ -47,6 +52,7 @@ private:
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		//glEnable(GL_DEPTH_TEST);
 	}
 
 	void checkInit(GLFWwindow* window) {
