@@ -1,41 +1,54 @@
 #pragma once
 
+// Graphical
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include <iostream>
-
-#include "Display.h"
-#include "Shader.h"
-#include "Texture.h"
 
 // Math
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+// Default headers
+#include <iostream>
+#include <vector>
+
+// Classes
+#include "Display.h"
+#include "Shader.h"
+#include "Texture.h"
+
+
+
+// timing
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
+
+bool firstMouse = true;
+float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float pitch = 0.0f;
+float lastX = 800.0f / 2.0;
+float lastY = 600.0 / 2.0;
+float fov = 45.0f;
+
+// camera
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+GLFWwindow* window;
+
 class Engine {
 public:
-	GLFWwindow* window;
+	
 	Engine(GLFWwindow* nWindow) {
 		window = nWindow;
 	}
 	
-	int loop(GLFWwindow* window, Shader shader, unsigned int VAO, unsigned int texture1, unsigned int texture2, glm::vec3 cubepositions[]) {
+	int loop(GLFWwindow* window, Shader shader, unsigned int VAO, std::vector<Texture> textures, glm::vec3 cubepositions[]) {
 		// Wireframe
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		// timing
-		float deltaTime = 0.0f;	// time between current frame and last frame
-		float lastFrame = 0.0f;
-
-		float fov = 45.0f;
-
-		// camera
-		glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-		glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-		glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		glEnable(GL_DEPTH_TEST);
 
 		while (!glfwWindowShouldClose(window)) {
@@ -50,9 +63,9 @@ public:
 			
 			// Textures
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, texture1);
+			glBindTexture(GL_TEXTURE_2D, textures[0].texture);
 			glActiveTexture(GL_TEXTURE1);
-			glBindTexture(GL_TEXTURE_2D, texture2);
+			glBindTexture(GL_TEXTURE_2D, textures[1].texture);
 
 			shader.use();
 			// pass projection matrix to shader (note that in this case it could change every frame)
@@ -83,4 +96,9 @@ public:
 		glfwTerminate();
 		return 0;
 	}
+
+	
+
+	
 };
+

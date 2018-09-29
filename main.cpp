@@ -11,6 +11,7 @@
 // Default headers
 #include <iostream>
 #include <ctime>
+#include <vector>
 
 // Custom headers
 #include "Loader.h"
@@ -25,18 +26,8 @@
 const bool DEBUG = true;
 
 void debug(int time);
-void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
-// camera
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-
-bool firstMouse = true;
-float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
-float pitch = 0.0f;
-float lastX = 800.0f / 2.0;
-float lastY = 600.0 / 2.0;
-float fov = 45.0f;
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 int main() {
 	
@@ -112,18 +103,20 @@ int main() {
 	// texture coord attribute
 	loadAttributes(1, 2, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	
-	
+	std::vector<Texture> textures;
 	Texture texture1("light_old.jpg");
 	Texture texture2("png.png");
-	Texture textureList[] = {texture1, texture2};
+	textures.push_back(texture1);
+	textures.push_back(texture2);
 
 	shader.use();
 	shader.setInt("texture1", 0);
 	shader.setInt("texture2", 1);
-
+	glfwSetScrollCallback(display.window, scroll_callback);
+	glfwSetCursorPosCallback(display.window, mouse_callback);
 	int stop_s = clock();
 	debug(stop_s-start_s);
-	engine.loop(display.window, shader, VAO, textureList, cubePositions);
+	engine.loop(display.window, shader, VAO, textures, cubePositions);
 
 	return 0;
 }
@@ -136,10 +129,16 @@ void debug(int time) {
 		std::cout << "DEBUG::RUN_TIME = " << time / double(CLOCKS_PER_SEC) * 1000 << "ms" << std::endl;
 	}
 }
-
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (fov >= 1.0f && fov <= 45.0f)
+		fov -= yoffset;
+	if (fov <= 1.0f)
+		fov = 1.0f;
+	if (fov >= 45.0f)
+		fov = 45.0f;
+}
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-	
-
 	if (firstMouse) {
 		lastX = xpos;
 		lastY = ypos;
@@ -171,14 +170,4 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 	front.y = sin(glm::radians(pitch));
 	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 	cameraFront = glm::normalize(front);
-}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-	if (fov >= 1.0f && fov <= 45.0f)
-		fov -= yoffset;
-	if (fov <= 1.0f)
-		fov = 1.0f;
-	if (fov >= 45.0f)
-		fov = 45.0f;
 }
