@@ -30,10 +30,10 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 int main() {
-	
+
 	int start_s = clock();
 	Display display(800, 600, "Gengine");
-	Engine engine(display.window);
+	Engine engine;
 	Shader shader("shader.vs", "shader.fs");
 
 	float vertices[] = {
@@ -102,20 +102,20 @@ int main() {
 	loadAttributes(0, 3, 5 * sizeof(float), (void*)0);
 	// texture coord attribute
 	loadAttributes(1, 2, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	
+
 	std::vector<Texture> textures;
 	Texture texture1("light_old.jpg");
 	Texture texture2("png.png");
 	textures.push_back(texture1);
 	textures.push_back(texture2);
-
+	
 	shader.use();
 	shader.setInt("texture1", 0);
 	shader.setInt("texture2", 1);
 	glfwSetScrollCallback(display.window, scroll_callback);
 	glfwSetCursorPosCallback(display.window, mouse_callback);
 	int stop_s = clock();
-	debug(stop_s-start_s);
+	debug(stop_s - start_s);
 	engine.loop(display.window, shader, VAO, textures, cubePositions);
 
 	return 0;
@@ -131,12 +131,12 @@ void debug(int time) {
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	if (fov >= 1.0f && fov <= 45.0f)
+	if (fov >= 45.0f && fov <= 90.0f)
 		fov -= yoffset;
-	if (fov <= 1.0f)
-		fov = 1.0f;
-	if (fov >= 45.0f)
+	if (fov <= 45.0f)
 		fov = 45.0f;
+	if (fov >= 90.0f)
+		fov = 90.0f;
 }
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 	if (firstMouse) {

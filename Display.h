@@ -1,8 +1,10 @@
 #pragma once
 
+// Graphical
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+// Default headers
 #include <iostream>
 
 namespace Manage {
@@ -14,14 +16,6 @@ namespace Manage {
 	void setCallbacks(GLFWwindow* window) {
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	}
-
-	void processInput(GLFWwindow* window) {
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-			glfwSetWindowShouldClose(window, true);
-		}
-	}
-
-	
 
 	// Validates initalization methods
 	int checkInit() {
@@ -37,7 +31,7 @@ class Display
 {
 public:
 	GLFWwindow * window;
-	Display(int width = 1280, int height = 720, const char *title = "Display") {
+	Display(int width = 1280, int height = 720, const char *title = "Gengine") {
 		init();
 		window = glfwCreateWindow(width, height, title, NULL, NULL);
 		checkInit(window);
