@@ -31,7 +31,7 @@ public:
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 		// res/ folder
-		const char *prefix = "res/textures/";
+		const char *prefix = "..\\res/textures/";
 		std::string filepath(prefix);
 		filepath.append(filename);
 

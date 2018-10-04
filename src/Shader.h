@@ -21,7 +21,7 @@ public:
 		std::ifstream fragmentShaderFile;
 
 		// res/shaders/ folder
-		const char *prefix = "res/shaders/";
+		const char *prefix = "..\\res/shaders/";
 		std::string vertexShaderPath(prefix);
 		std::string fragmentShaderPath(prefix);
 		vertexShaderPath.append(vertexShaderName);
