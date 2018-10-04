@@ -116,6 +116,8 @@ int main() {
 	glfwSetCursorPosCallback(display.window, mouse_callback);
 	int stop_s = clock();
 	debug(stop_s - start_s);
+	// Optimization
+	glEnable(GL_DEPTH_TEST);
 	engine.loop(display.window, shader, VAO, textures, cubePositions);
 
 	return 0;
