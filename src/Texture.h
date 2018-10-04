@@ -30,8 +30,12 @@ public:
 		// Load image, create texture and generate mipmaps
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
+		// res/ folder
+		const char *prefix = "res/";
+		std::string filepath(prefix);
+		filepath.append(filename);
 
-		unsigned char *data = stbi_load(filename, &width, &height, &nrChannels, 0);
+		unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &nrChannels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
