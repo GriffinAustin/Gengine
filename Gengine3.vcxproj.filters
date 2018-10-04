@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\test.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="res\textures\awesomeface.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="res\textures\container.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="res\textures\jpg.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="res\textures\light_old.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="res\textures\png.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\shaders\shader.vs">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="res\shaders\shader.fs">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{87381da3-7234-4c20-9d49-02c1b28d582b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{653ad833-e27c-4ee6-a643-325e5248447c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{e5d74745-075b-457b-af99-fda97dc0f07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{4935d06c-6b3c-4d6e-92c5-6d9a7555a098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{af8468d9-9d21-4c64-82ed-a68bcbe26684}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

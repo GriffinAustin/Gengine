@@ -13,19 +13,26 @@ class Shader {
 public:
 	unsigned int ID;
 
-	Shader(const char* vertexShaderPath, const char* fragmentShaderPath) {
+	Shader(const char* vertexShaderName, const char* fragmentShaderName) {
 		// Read files
 		std::string vertexShaderText;
 		std::string fragmentShaderText;
 		std::ifstream vertexShaderFile;
 		std::ifstream fragmentShaderFile;
 
+		// res/shaders/ folder
+		const char *prefix = "res/shaders/";
+		std::string vertexShaderPath(prefix);
+		std::string fragmentShaderPath(prefix);
+		vertexShaderPath.append(vertexShaderName);
+		fragmentShaderPath.append(fragmentShaderName);
+
 		vertexShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		fragmentShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
 		try {
-			vertexShaderFile.open(vertexShaderPath);
-			fragmentShaderFile.open(fragmentShaderPath);
+			vertexShaderFile.open(vertexShaderPath.c_str());
+			fragmentShaderFile.open(fragmentShaderPath.c_str());
 			
 			std::stringstream vertexShaderStream;
 			std::stringstream fragmentShaderStream;
