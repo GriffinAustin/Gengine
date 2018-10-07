@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LOADER_H
+#define LOADER_H
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -25,3 +27,4 @@ void loadAttributes(int index, int size, GLsizei stride, const void *pointer) {
 	glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, pointer);
 	glEnableVertexAttribArray(index);
 }
+#endif

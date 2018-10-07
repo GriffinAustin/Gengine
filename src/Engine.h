@@ -71,6 +71,7 @@ public:
 
 			// render boxes
 			glBindVertexArray(VAO);
+
 			for (unsigned int i = 0; i < 10; i++)
 			{
 				// calculate the model matrix for each object and pass it to shader before drawing

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DISPLAY_H
+#define DISPLAY_H
 
 // Graphical
 #include <glad/glad.h>
@@ -57,4 +59,4 @@ private:
 	}
 	
 };
-
+#endif
